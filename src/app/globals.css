@@ -1,1 +1,10 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-source-sans-3), sans-serif;
+  --color-coral-red: #e63946;
+  --color-cream: #f1faee;
+  --color-powder-blue: #a8dadc;
+  --color-ocean-blue: #457b9d;
+  --color-navy: #1d3557;
+}
