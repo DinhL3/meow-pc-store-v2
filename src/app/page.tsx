@@ -63,7 +63,7 @@ export default function Home() {
             href="https://www.tiktok.com/@meowpc.fi"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-white/20 p-2 hover:bg-white/30 transition"
+            className="rounded-full bg-white/20 p-2 transition hover:bg-black"
           >
             <FaTiktok className="w-5 h-5" />
           </a>
@@ -71,7 +71,7 @@ export default function Home() {
             href="https://www.youtube.com/@meowpcfi"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-white/20 p-2 hover:bg-white/30 transition"
+            className="rounded-full bg-white/20 p-2 transition hover:bg-[#FF0000]"
           >
             <FaYoutube className="w-5 h-5" />
           </a>

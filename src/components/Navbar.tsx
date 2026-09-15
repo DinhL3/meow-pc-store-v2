@@ -1,6 +1,9 @@
+'use client';
+
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { href: '/prebuilt-pcs', label: 'Prebuilt PCs' },
@@ -9,15 +12,23 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const logoSize = isHome ? 80 : 48;
+
   return (
-    <nav className="bg-navy text-white w-full">
+    <nav
+      className={`w-full text-white z-10 ${
+        isHome ? 'absolute top-0 left-0 bg-transparent' : 'relative bg-navy'
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex items-center px-6 py-2">
         <Link href="/">
           <Image
             src="https://res.cloudinary.com/dlhzbr2to/image/upload/v1759780477/logo_cerulean_transparent_s2geby.png"
             alt="Meow PC Store"
-            width={48}
-            height={48}
+            width={logoSize}
+            height={logoSize}
             preload
           />
         </Link>
