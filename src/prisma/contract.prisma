@@ -1,0 +1,16 @@
+// use prisma-8
+
+model Product {
+  id             String            @id
+  name           String
+  tags           String[]
+  price          Int
+  currency       String
+  description    String
+  componentsJson String?
+  images         String[]
+  isAvailable    Boolean           @default(true)
+  isVisible      Boolean           @default(true)
+  createdAt      TimestamptzString @default(now())
+  updatedAt      temporal.updatedAtString()
+}
