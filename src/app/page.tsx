@@ -10,6 +10,7 @@ export default function Home() {
         alt="A beautiful gaming PC on a desk"
         fill
         priority
+        sizes="(max-width: 767px) 100vw, 0px"
         className="object-cover -z-10 md:hidden"
       />
       <Image
@@ -17,6 +18,7 @@ export default function Home() {
         alt="A beautiful gaming PC on a desk"
         fill
         priority
+        sizes="(min-width: 768px) 100vw, 0px"
         className="object-cover -z-10 hidden md:block"
       />
       <div className="absolute inset-0 bg-black/75 md:hidden -z-10" />
