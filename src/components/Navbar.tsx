@@ -1,6 +1,7 @@
 'use client';
 
 import { UserCircleIcon } from '@heroicons/react/24/solid';
+import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -44,10 +45,14 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-
-        <Link href="/account" className="ml-auto">
-          <UserCircleIcon className="w-8 h-8 hover:text-powder-blue" />
-        </Link>
+        <div className="flex items-center gap-3 ml-auto">
+          <Link href="/account">
+            <UserCircleIcon className="w-6 h-6 hover:text-powder-blue" />
+          </Link>
+          <Link href="/cart">
+            <ShoppingCartIcon className="w-6 h-6 hover:text-powder-blue" />
+          </Link>
+        </div>
       </div>
     </nav>
   );
