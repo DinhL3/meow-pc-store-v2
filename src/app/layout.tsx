@@ -5,8 +5,9 @@ import { Source_Sans_3 } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
-  title: 'meow-pc-store-v2',
-  description: '',
+  title: 'Meow PC Store | Prebuilt and custom gaming PCs',
+  description:
+    'Shop prebuilt and custom gaming PCs at Meow PC Store. Configure your own rig or choose a ready-to-ship build with fast shipping and expert support.',
 };
 
 const sourceSans3 = Source_Sans_3({
