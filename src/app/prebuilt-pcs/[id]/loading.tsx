@@ -1,5 +1,11 @@
+"use client";
+
+import { BeatLoader } from "react-spinners";
+
 export default function Loading() {
   return (
-    <p className="text-center text-navy py-12">Loading PC details...</p>
+    <div className="flex justify-center py-12">
+      <BeatLoader color="#1d3557" />
+    </div>
   );
 }

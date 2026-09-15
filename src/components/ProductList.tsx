@@ -1,15 +1,16 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import type { Product } from "@/data/product.types";
-import ProductCard from "@/components/ProductCard";
+import { useEffect, useMemo, useState } from 'react';
+import { BeatLoader } from 'react-spinners';
+import type { Product } from '@/data/product.types';
+import ProductCard from '@/components/ProductCard';
 
-type SortOption = "price-asc" | "price-desc";
+type SortOption = 'price-asc' | 'price-desc';
 
 export default function ProductList() {
   const [products, setProducts] = useState<Product[] | null>(null);
   const [error, setError] = useState(false);
-  const [sortBy, setSortBy] = useState<SortOption>("price-asc");
+  const [sortBy, setSortBy] = useState<SortOption>('price-asc');
 
   useEffect(() => {
     let cancelled = false;
@@ -19,8 +20,8 @@ export default function ProductList() {
       setProducts(null);
 
       try {
-        const res = await fetch("/api/products");
-        if (!res.ok) throw new Error("Request failed");
+        const res = await fetch('/api/products');
+        if (!res.ok) throw new Error('Request failed');
         const data: Product[] = await res.json();
         if (!cancelled) setProducts(data);
       } catch {
@@ -37,7 +38,7 @@ export default function ProductList() {
   const sortedProducts = useMemo(() => {
     if (!products) return [];
     return [...products].sort((a, b) =>
-      sortBy === "price-asc" ? a.price - b.price : b.price - a.price,
+      sortBy === 'price-asc' ? a.price - b.price : b.price - a.price,
     );
   }, [products, sortBy]);
 
@@ -50,12 +51,16 @@ export default function ProductList() {
   }
 
   if (!products) {
-    return <p className="text-center text-navy py-12">Loading PCs...</p>;
+    return (
+      <div className="flex justify-center py-12">
+        <BeatLoader color="#1d3557" />
+      </div>
+    );
   }
 
   return (
     <div>
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-center mb-4">
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as SortOption)}
