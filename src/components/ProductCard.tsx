@@ -17,6 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           src={product.images[0]}
           alt={product.name}
           fill
+          sizes="275px"
           className="object-cover transition-transform duration-200 hover:scale-105"
         />
       </div>

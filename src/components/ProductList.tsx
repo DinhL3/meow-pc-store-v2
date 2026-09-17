@@ -1,39 +1,16 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { BeatLoader } from 'react-spinners';
-import type { Product } from '@/data/product.types';
 import ProductCard from '@/components/ProductCard';
+import { productsCache } from '@/lib/queries/products';
 
 type SortOption = 'price-asc' | 'price-desc';
 
 export default function ProductList() {
-  const [products, setProducts] = useState<Product[] | null>(null);
-  const [error, setError] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>('price-asc');
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      setError(false);
-      setProducts(null);
-
-      try {
-        const res = await fetch('/api/products');
-        if (!res.ok) throw new Error('Request failed');
-        const data: Product[] = await res.json();
-        if (!cancelled) setProducts(data);
-      } catch {
-        if (!cancelled) setError(true);
-      }
-    }
-
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { data: products, isPending, isError } = useQuery(productsCache.options());
 
   const sortedProducts = useMemo(() => {
     if (!products) return [];
@@ -42,7 +19,7 @@ export default function ProductList() {
     );
   }, [products, sortBy]);
 
-  if (error) {
+  if (isError) {
     return (
       <p className="text-center text-navy py-12">
         Couldn&apos;t load PCs right now. Please try again later.
@@ -50,7 +27,7 @@ export default function ProductList() {
     );
   }
 
-  if (!products) {
+  if (isPending) {
     return (
       <div className="flex justify-center py-12">
         <BeatLoader color="#1d3557" />

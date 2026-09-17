@@ -4,6 +4,7 @@ import { Source_Sans_3 } from 'next/font/google';
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Providers } from './providers';
 
 export const metadata: Metadata = {
   title: 'Meow PC Store | Prebuilt and custom gaming PCs',
@@ -20,9 +21,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={sourceSans3.variable}>
       <body className="flex flex-col min-h-screen">
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
