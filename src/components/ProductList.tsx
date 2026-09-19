@@ -49,8 +49,8 @@ export default function ProductList() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4">
-        {sortedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+        {sortedProducts.map((product, index) => (
+          <ProductCard key={product.id} product={product} isAboveFold={index === 0} />
         ))}
       </div>
     </div>

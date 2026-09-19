@@ -4,9 +4,10 @@ import type { Product } from "@/data/product.types";
 
 interface ProductCardProps {
   product: Product;
+  isAboveFold?: boolean;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, isAboveFold }: ProductCardProps) {
   return (
     <Link
       href={`/prebuilt-pcs/${product.id}`}
@@ -18,6 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           alt={product.name}
           fill
           sizes="275px"
+          loading={isAboveFold ? 'eager' : 'lazy'}
           className="object-cover transition-transform duration-200 hover:scale-105"
         />
       </div>
