@@ -12,6 +12,7 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import type { Product } from "@/data/product.types";
+import { useCartStore } from "@/store/cart-store";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -27,6 +28,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const addItem = useCartStore((state) => state.addItem);
 
   const lightboxSlides = product.images.map((image) => ({
     src: image,
@@ -118,7 +120,17 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           <button
             type="button"
-            className="w-full flex items-center justify-center gap-2 rounded-full bg-coral-red text-white py-3 text-base font-semibold"
+            disabled={!product.isAvailable}
+            onClick={() =>
+              addItem({
+                productId: product.id,
+                name: product.name,
+                price: product.price,
+                currency: product.currency,
+                image: product.images[0],
+              })
+            }
+            className="w-full flex items-center justify-center gap-2 rounded-full bg-coral-red text-white py-3 text-base font-semibold cursor-pointer hover:bg-coral-red/90 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ShoppingCartIcon className="w-5 h-5" />
             Add to cart

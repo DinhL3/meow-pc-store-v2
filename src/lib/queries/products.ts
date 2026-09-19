@@ -1,3 +1,4 @@
+// client-side data fetching config for TanStack Query.
 import { queryOptions } from '@tanstack/react-query';
 import type { Product } from '@/data/product.types';
 

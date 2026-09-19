@@ -1,3 +1,6 @@
+/* server-side data access.
+It queries the database directly via db.orm.public.Product (Prisma 8's ORM API)
+and maps raw DB rows to the app's Product type */
 import { db } from "@/prisma/db";
 import type { Product } from "@/data/product.types";
 

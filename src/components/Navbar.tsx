@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import MobileNavMenu from './MobileNavMenu';
+import { useCartStore } from '@/store/cart-store';
+import { useCartHydration } from '@/store/cart-hydration';
 
 const navLinks = [
   { href: '/prebuilt-pcs', label: 'Prebuilt PCs' },
@@ -18,6 +20,11 @@ export default function Navbar() {
   const isHome = pathname === '/';
   const logoSize = isHome ? 80 : 48;
   const logoClassName = isHome ? 'w-[72px] h-[72px] lg:w-20 lg:h-20' : 'w-12 h-12';
+
+  const hydrated = useCartHydration();
+  const itemCount = useCartStore((state) =>
+    state.items.reduce((sum, item) => sum + item.quantity, 0),
+  );
 
   return (
     <nav
@@ -61,8 +68,13 @@ export default function Navbar() {
           <Link href="/account">
             <UserCircleIcon className="w-6 h-6 hover:text-powder-blue" />
           </Link>
-          <Link href="/cart">
+          <Link href="/cart" className="relative">
             <ShoppingCartIcon className="w-6 h-6 hover:text-powder-blue" />
+            {hydrated && itemCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-coral-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {itemCount}
+              </span>
+            )}
           </Link>
         </div>
       </div>
